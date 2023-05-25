@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Armando da Cruz",
+    "avatar": "https://randomuser.me/portraits/men/1.jpg",
+    "email": "armando.dacruz@example.com",
+    "salary": "5000",
+    "date": "2022-06-08",
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "name": "Eleutério Almeida",
+    "avatar": "https://randomuser.me/portraits/men/2.jpg",
+    "email": "eleutério.almeida@example.com",
+    "salary": "8000",
+    "date": "2018-07-05",
+    "status": "inactive"
+  },
+  {
+    "id": 3,
+    "name": "Apolo Nunes",
+    "avatar": "https://randomuser.me/portraits/men/3.jpg",
+    "email": "apolo.nunes@example.com",
+    "salary": "6000",
+    "date": "2015-04-12",
+    "status": "active"
+  },
+  {
+    "id": 4,
+    "name": "Airi Sato",
+    "avatar": "https://randomuser.me/portraits/men/4.jpg",
+    "email": "sato.airi@example.com",
+    "salary": "10000",
+    "date": "2000-03-09",
+    "status": "inactive"
+  }
+]
