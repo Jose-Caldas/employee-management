@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import connectMongo from '@/database/conn';
+import { getUsers } from '@/database/controller';
 
 export default async function handler(req, res) {
   connectMongo().catch(() =>
@@ -10,7 +11,8 @@ export default async function handler(req, res) {
 
   switch (method) {
     case 'GET':
-      res.status(200).json({ method, name: 'GET request' });
+      getUsers(res, req);
+
       break;
     case 'POST':
       res.status(200).json({ method, name: 'POST request' });
