@@ -1,10 +1,10 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { BiEdit, BiTrashAlt } from 'react-icons/bi';
-import { getUser } from '@/lib/helper';
+import { getUsers } from '@/lib/helper';
 
 const Table = () => {
-  const { isLoading, isError, data, error } = useQuery('users', getUser);
+  const { isLoading, isError, data, error } = useQuery('users', getUsers);
 
   if (isLoading) return <div>Employee is loading...</div>;
   if (error) return <div>Got Error {error}</div>;
