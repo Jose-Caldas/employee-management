@@ -2,6 +2,7 @@
 import { useReducer } from 'react';
 import { BiBrush } from 'react-icons/bi';
 import Success from './Success';
+import Bug from './bug';
 
 const formReducer = (state, event) => {
   return {
@@ -19,8 +20,10 @@ const UpdateUserForm = () => {
     console.log(formData);
   };
 
-  if (Object.keys(formData).length > 0)
-    return <Success message={'Data Added'} />;
+  // if (Object.keys(formData).length > 0)
+  //   return <Success message={'Data Added'} />;
+
+  // if (Object.keys(formData).length < 0) return <Bug message={'Error'} />;
 
   return (
     <form className="grid lg:grid-cols-2 w-4/6 gap-4" onSubmit={handleSubmit}>

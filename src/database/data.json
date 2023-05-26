@@ -6,7 +6,7 @@
     "email": "armando.dacruz@example.com",
     "salary": "5000",
     "date": "2022-06-08",
-    "status": "active"
+    "status": "Active"
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "email": "eleutério.almeida@example.com",
     "salary": "8000",
     "date": "2018-07-05",
-    "status": "inactive"
+    "status": "Inactive"
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "email": "apolo.nunes@example.com",
     "salary": "6000",
     "date": "2015-04-12",
-    "status": "active"
+    "status": "Active"
   },
   {
     "id": 4,
@@ -33,6 +33,6 @@
     "email": "sato.airi@example.com",
     "salary": "10000",
     "date": "2000-03-09",
-    "status": "inactive"
+    "status": "Inactive"
   }
 ]
