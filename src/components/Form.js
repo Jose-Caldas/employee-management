@@ -12,7 +12,3 @@ const Form = () => {
 };
 
 export default Form;
-
-// c4VNdprzXPAkYlcS
-// jrcaldas
-// mongodb+srv://jrcaldas:<password>@nextjscrud.vl504ad.mongodb.net/?retryWrites=true&w=majority

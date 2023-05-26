@@ -6,7 +6,7 @@ import Form from '@/components/Form';
 export default function Home() {
   const [visible, setVisible] = useState(false);
 
-  const handler = () => {
+  const handleForm = () => {
     setVisible(!visible);
   };
 
@@ -19,7 +19,7 @@ export default function Home() {
         <div className="left flex gap-3">
           <button
             className="flex bg-indigo-500 text-white px-4 py-2 border rounded-md hover:bg-gray-50 hover:border-gray-800 hover:text-gray-800"
-            onClick={handler}
+            onClick={handleForm}
           >
             Add Employee
             <span className="px-1">
