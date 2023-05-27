@@ -3,27 +3,24 @@ import { useReducer } from 'react';
 import { BiBrush } from 'react-icons/bi';
 import Success from './Success';
 import Bug from './bug';
+import { useQuery } from 'react-query';
+import { getUser } from '@/lib/helper';
 
-const formReducer = (state, event) => {
-  return {
-    ...state,
-    [event.target.name]: event.target.value,
-  };
-};
+const UpdateUserForm = ({ formId, formData, setFormData }) => {
+  const { isLoading, isError, data, error } = useQuery(['users', formId], () =>
+    getUser(formId)
+  );
 
-const UpdateUserForm = () => {
-  const [formData, setFormData] = useReducer(formReducer, {});
+  if (isLoading) return <div>Loading...!</div>;
+  if (isError) return <div>Error!</div>;
+
+  const { name, avatar, email, salary, date, status } = data;
+  const [firstname, lastname] = name ? name.split(' ') : formData;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Object.keys(formData)) return console.log('Don´t have form data!');
-    console.log(formData);
   };
-
-  // if (Object.keys(formData).length > 0)
-  //   return <Success message={'Data Added'} />;
-
-  // if (Object.keys(formData).length < 0) return <Bug message={'Error'} />;
 
   return (
     <form className="grid lg:grid-cols-2 w-4/6 gap-4" onSubmit={handleSubmit}>
@@ -32,6 +29,7 @@ const UpdateUserForm = () => {
           type="text"
           name="firstname"
           placeholder="First Name"
+          defaultValue={firstname}
           className="min-w-full px-5 py-3 focus:outline-none border rounded-md"
           onChange={setFormData}
         />
@@ -41,6 +39,7 @@ const UpdateUserForm = () => {
           type="text"
           name="lastname"
           placeholder="Last Name"
+          defaultValue={lastname}
           className="min-w-full px-5 py-3 focus:outline-none border rounded-md"
           onChange={setFormData}
         />
@@ -50,6 +49,7 @@ const UpdateUserForm = () => {
           type="text"
           name="email"
           placeholder="Email"
+          defaultValue={email}
           className="min-w-full px-5 py-3 focus:outline-none border rounded-md"
           onChange={setFormData}
         />
@@ -59,6 +59,7 @@ const UpdateUserForm = () => {
           type="text"
           name="salary"
           placeholder="Salary"
+          defaultValue={salary}
           className="min-w-full px-5 py-3 focus:outline-none border rounded-md"
           onChange={setFormData}
         />
@@ -68,6 +69,7 @@ const UpdateUserForm = () => {
           type="date"
           name="date"
           className="px-5 py-3 focus:outline-none border rounded-md"
+          defaultValue={date}
           onChange={setFormData}
         />
       </div>
@@ -79,6 +81,7 @@ const UpdateUserForm = () => {
             id="radioDefault1"
             name="status"
             className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-green-500 checked:border-green-500 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+            defaultChecked={status === 'Active'}
             onChange={setFormData}
           />
           <label htmlFor="radioDefault1" className="inline-block text-gray-800">
@@ -93,6 +96,7 @@ const UpdateUserForm = () => {
             id="radioDefault2"
             name="status"
             className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-green-500 checked:border-green-500 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+            defaultChecked={status !== 'Active'}
             onChange={setFormData}
           />
           <label htmlFor="radioDefault2" className="inline-block text-gray-800">

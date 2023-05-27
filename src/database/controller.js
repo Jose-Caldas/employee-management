@@ -5,9 +5,9 @@ export async function getUsers(req, res) {
   try {
     const users = await Users.find({});
     if (!users) return res.status(404).json({ error: 'Data not found!' });
-    res.status(200).json(users);
+    return res.status(200).json(users);
   } catch (error) {
-    res.status(404).json({ error: 'Error While Fetching Data!' });
+    return res.status(404).json({ error: 'Error While Fetching Data!' });
   }
 }
 
@@ -18,11 +18,11 @@ export async function getUser(req, res) {
 
     if (userId) {
       const user = await Users.findById(userId);
-      res.status(200).json(user);
+      return res.status(200).json(user);
     }
-    res.status(404).json({ error: 'User Not Selected...!' });
+    return res.status(404).json({ error: 'User Not Selected...!' });
   } catch (error) {
-    res.status(404).json({ error: 'Cannot Get User...!' });
+    return res.status(404).json({ error: 'Cannot Get User...!' });
   }
 }
 
@@ -33,7 +33,7 @@ export async function postUser(req, res) {
     if (!formData)
       return res.status(404).json({ error: 'Form Data Not Provided...!' });
     const newUser = await Users.create(formData);
-    res.status(201).json(newUser);
+    return res.status(201).json(newUser);
   } catch (error) {
     return res.status(405).json({ error });
   }
@@ -47,11 +47,11 @@ export async function putUser(req, res) {
 
     if (userId && formData) {
       const user = await Users.findByIdAndUpdate(userId, formData);
-      res.status(200).json(user);
+      return res.status(200).json(user);
     }
-    res.status(404).json({ error: 'User Not Selected...!' });
+    return res.status(404).json({ error: 'User Not Selected...!' });
   } catch (error) {
-    res.status(405).json({ error: 'Error While Updating the Data!' });
+    return res.status(405).json({ error: 'Error While Updating the Data!' });
   }
 }
 
@@ -64,7 +64,7 @@ export async function deleteUser(req, res) {
       const user = await Users.findByIdAndDelete(userId);
       return res.status(200).json({ deleted: user });
     }
-    res.status(404).json({ error: 'User Not Selected...!' });
+    return res.status(404).json({ error: 'User Not Selected...!' });
   } catch (error) {
     return res.status(404).json({ error: 'Error While deleting the User' });
   }

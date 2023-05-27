@@ -1,9 +1,9 @@
-import React from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { BiEdit, BiTrashAlt } from 'react-icons/bi';
 import { getUsers } from '@/lib/helper';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleChangeAction } from '../redux/reducer';
+import { toggleChangeAction, updateAction } from '../redux/reducer';
 
 const Table = () => {
   const { isLoading, isError, data, error } = useQuery('users', getUsers);
@@ -44,13 +44,16 @@ const Table = () => {
   );
 };
 
-function Tr({ id, name, avatar, email, salary, date, status }) {
+function Tr({ _id, name, avatar, email, salary, date, status }) {
   const visible = useSelector((state) => state.app.client.toggleForm);
+
   const dispach = useDispatch();
 
   const onUpdate = () => {
     dispach(toggleChangeAction());
-    console.log(visible);
+    if (visible) {
+      dispach(updateAction(_id));
+    }
   };
 
   return (
