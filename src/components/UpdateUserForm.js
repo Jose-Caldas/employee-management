@@ -3,13 +3,22 @@ import { useReducer } from 'react';
 import { BiBrush } from 'react-icons/bi';
 import Success from './Success';
 import Bug from './bug';
-import { useQuery } from 'react-query';
-import { getUser } from '@/lib/helper';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { getUser, getUsers, updteUser } from '@/lib/helper';
 
 const UpdateUserForm = ({ formId, formData, setFormData }) => {
+  const queryClient = useQueryClient();
+
   const { isLoading, isError, data, error } = useQuery(['users', formId], () =>
     getUser(formId)
   );
+
+  const UpdateMutation = useMutation((newData) => updteUser(formId, newData), {
+    onSuccess: async (data) => {
+      // queryClient.setQueryData('users', (old) => [data]);
+      queryClient.prefetchQuery('users', getUsers);
+    },
+  });
 
   if (isLoading) return <div>Loading...!</div>;
   if (isError) return <div>Error!</div>;
@@ -17,9 +26,14 @@ const UpdateUserForm = ({ formId, formData, setFormData }) => {
   const { name, avatar, email, salary, date, status } = data;
   const [firstname, lastname] = name ? name.split(' ') : formData;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (Object.keys(formData)) return console.log('Don´t have form data!');
+    let userName = `${formData.firstname ?? firstname} ${
+      formData.lastname ?? lastname
+    }`;
+    let updated = Object.assign({}, data, formData, { name: userName });
+    console.log(updated);
+    await UpdateMutation.mutate(updated);
   };
 
   return (
