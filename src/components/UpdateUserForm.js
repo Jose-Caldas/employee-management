@@ -1,8 +1,5 @@
 'use client';
-import { useReducer } from 'react';
 import { BiBrush } from 'react-icons/bi';
-import Success from './Success';
-import Bug from './Bug';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { getUser, getUsers, updteUser } from '@/lib/helper';
 
@@ -15,7 +12,6 @@ const UpdateUserForm = ({ formId, formData, setFormData }) => {
 
   const UpdateMutation = useMutation((newData) => updteUser(formId, newData), {
     onSuccess: async (data) => {
-      // queryClient.setQueryData('users', (old) => [data]);
       queryClient.prefetchQuery('users', getUsers);
     },
   });
@@ -23,7 +19,7 @@ const UpdateUserForm = ({ formId, formData, setFormData }) => {
   if (isLoading) return <div>Loading...!</div>;
   if (isError) return <div>Error!</div>;
 
-  const { name, avatar, email, salary, date, status } = data;
+  const { name, email, salary, date, status } = data;
   const [firstname, lastname] = name ? name.split(' ') : formData;
 
   const handleSubmit = async (e) => {
