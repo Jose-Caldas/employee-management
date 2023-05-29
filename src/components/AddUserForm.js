@@ -4,7 +4,7 @@ import { BiPlus } from 'react-icons/bi';
 import Success from './Success';
 import { useQueryClient, useMutation } from 'react-query';
 import { addUser, getUsers } from '@/lib/helper';
-import Bug from './bug';
+import Bug from './Bug';
 
 const AddUserForm = ({ formData, setFormData }) => {
   const queryClient = useQueryClient();
