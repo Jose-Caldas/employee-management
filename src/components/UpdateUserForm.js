@@ -29,7 +29,7 @@ const UpdateUserForm = ({ formId, formData, setFormData }) => {
     }`;
     let updated = Object.assign({}, data, formData, { name: userName });
     console.log(updated);
-    await UpdateMutation.mutate(updated);
+    UpdateMutation.mutate(updated);
   };
 
   return (

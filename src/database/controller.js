@@ -1,6 +1,5 @@
 import Users from '../model/user';
 
-//Get: http://localhost:3000/api/users
 export async function getUsers(req, res) {
   try {
     const users = await Users.find({});
@@ -11,7 +10,6 @@ export async function getUsers(req, res) {
   }
 }
 
-//Get: http://localhost:3000/api/users/:id
 export async function getUser(req, res) {
   try {
     const { userId } = req.query;
@@ -26,7 +24,6 @@ export async function getUser(req, res) {
   }
 }
 
-//Post: http://localhost:3000/api/users
 export async function postUser(req, res) {
   try {
     const formData = req.body;
@@ -39,7 +36,6 @@ export async function postUser(req, res) {
   }
 }
 
-//Put: http://localhost:3000/api/users/:id
 export async function putUser(req, res) {
   try {
     const { userId } = req.query;
@@ -55,7 +51,6 @@ export async function putUser(req, res) {
   }
 }
 
-//Delete: http://localhost:3000/api/users/:id
 export async function deleteUser(req, res) {
   try {
     const { userId } = req.query;
